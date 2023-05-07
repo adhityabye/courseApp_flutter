@@ -1,6 +1,7 @@
 import 'package:course_app/app_blocs.dart';
 import 'package:course_app/app_events.dart';
 import 'package:course_app/app_states.dart';
+import 'package:course_app/pages/sign_in/sign_in.dart';
 import 'package:course_app/pages/welcome/bloc/welcome_blocs.dart';
 import 'package:course_app/pages/welcome/welcome.dart';
 import 'package:flutter/material.dart';
@@ -13,16 +14,38 @@ void main() {
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
-
   // This widget is the root of your application.
   @override
+  // Widget build(BuildContext) {
+  //   return BlocProvider(
+  //     lazy: true,
+  //     create: (context) => WelcomeBloc(),
+  //     child: ScreenUtilInit(
+  //         builder: (context, child) => const MaterialApp(
+  //               debugShowCheckedModeBanner: false,
+  //               home: Welcome(),
+  //             )),
+  //   );
+  // }
   Widget build(BuildContext context) {
-    return BlocProvider(
-        create: (context) => WelcomeBloc(),
+    return MultiBlocProvider(
+        providers: [
+          BlocProvider(create: (context) => WelcomeBloc()),
+          BlocProvider(create: (context) => AppBlocs()),
+        ],
         child: ScreenUtilInit(
-            builder: (context, child) => const MaterialApp(
+            builder: (context, child) => MaterialApp(
                   debugShowCheckedModeBanner: false,
+                  theme: ThemeData(
+                      appBarTheme: const AppBarTheme(
+                          elevation: 0,
+                          backgroundColor: Colors.white,
+                          centerTitle: true)),
                   home: Welcome(),
+                  routes: {
+                    "myHomePage": (context) => MyHomePage(),
+                    "signIn": (context) => SignIn(),
+                  },
                 )));
   }
 }
@@ -33,9 +56,9 @@ class MyHomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: Text("Flutter Demo Home Page"),
-        ),
+        // appBar: AppBar(
+        //   title: const Text("Flutter Demo Home Page"),
+        // ),
         body: Center(
             child: BlocBuilder<AppBlocs, AppStates>(builder: (context, state) {
           return Column(
@@ -55,12 +78,14 @@ class MyHomePage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
             FloatingActionButton(
+              heroTag: "heroTag1",
               onPressed: () =>
                   BlocProvider.of<AppBlocs>(context).add(Increments()),
               tooltip: 'Increment',
               child: const Icon(Icons.add),
             ),
             FloatingActionButton(
+              heroTag: "heroTag2",
               onPressed: () =>
                   BlocProvider.of<AppBlocs>(context).add(Decrements()),
               tooltip: 'Decrement',
