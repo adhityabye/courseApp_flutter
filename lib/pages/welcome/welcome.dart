@@ -1,10 +1,11 @@
+import 'package:course_app/main.dart';
 import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../common/values/colors.dart';
 import 'bloc/welcome_blocs.dart';
 import 'bloc/welcome_events.dart';
 import 'bloc/welcome_states.dart';
@@ -70,8 +71,8 @@ class _WelcomeState extends State<Welcome> {
                       dotsCount: 3,
                       mainAxisAlignment: MainAxisAlignment.center,
                       decorator: DotsDecorator(
-                          color: Colors.grey,
-                          activeColor: Colors.blue,
+                          color: AppColors.primaryThirdElementText,
+                          activeColor: AppColors.primaryElement,
                           size: const Size.square(8.0),
                           activeSize: const Size(18.0, 8.0),
                           activeShape: RoundedRectangleBorder(
@@ -100,7 +101,7 @@ class _WelcomeState extends State<Welcome> {
         Container(
           child: Text(title,
               style: TextStyle(
-                  color: Colors.black,
+                  color: AppColors.primaryText,
                   fontSize: 24.sp,
                   fontWeight: FontWeight.normal)),
         ),
@@ -109,7 +110,7 @@ class _WelcomeState extends State<Welcome> {
           padding: EdgeInsets.only(left: 30.w, right: 30.w),
           child: Text(subTitle,
               style: TextStyle(
-                  color: Colors.black.withOpacity(0.5),
+                  color: AppColors.primarySecondaryElementText,
                   fontSize: 14.sp,
                   fontWeight: FontWeight.normal)),
         ),
@@ -118,23 +119,28 @@ class _WelcomeState extends State<Welcome> {
             if (index < 3) {
               //animation
               pageController.animateToPage(index,
-                  duration: Duration(milliseconds: 500),
+                  duration: const Duration(milliseconds: 500),
                   curve: Curves.easeInOut);
-            } else {}
+            } else {
+              // Navigator.of(context)
+              //     .push(MaterialPageRoute(builder: (context) => MyHomePage()));
+              Navigator.of(context)
+                  .pushNamedAndRemoveUntil("signIn", (route) => false);
+            }
           },
           child: Container(
             margin: EdgeInsets.only(top: 100.h, left: 25.w, right: 25.w),
             width: 325.w,
             height: 50.h,
             decoration: BoxDecoration(
-                color: Colors.blue,
+                color: AppColors.primaryElement,
                 borderRadius: BorderRadius.circular(15.w),
                 boxShadow: [
                   BoxShadow(
                     color: Colors.grey.withOpacity(0.3),
                     spreadRadius: 1,
                     blurRadius: 2,
-                    offset: Offset(0, 5),
+                    offset: const Offset(0, 5),
                   )
                 ]),
             child: Center(
