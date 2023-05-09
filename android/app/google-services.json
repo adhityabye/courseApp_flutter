@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "435040404195",
+    "project_id": "byeulearning-app",
+    "storage_bucket": "byeulearning-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:435040404195:android:a220ea41044f3704ecfbd6",
+        "android_client_info": {
+          "package_name": "com.example.course_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "435040404195-t0ojne40u0slsg9e311npn1dmq345mc8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyChaJIGPMcpum85AiGJhUP2pcWBar429fI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "435040404195-t0ojne40u0slsg9e311npn1dmq345mc8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
