@@ -39,7 +39,8 @@ dependencies:
   flutter_screenutil: ^5.7.0
   dots_indicator: ^2.1.0
   intl: ^0.18.1
-  # cloud_firestore:
+  firebase_auth: ^4.2.2
+  cloud_firestore:
 
 dev_dependencies:
   flutter_test:
