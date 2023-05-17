@@ -1,5 +1,6 @@
 import 'package:course_app/pages/register/bloc/register_event.dart';
 import 'package:course_app/pages/register/bloc/register_state.dart';
+import 'package:course_app/pages/register/register_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
@@ -7,7 +8,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../sign_in/bloc/sign_in_blocs.dart';
-import '../sign_in/bloc/sign_in_events.dart';
+// import '../sign_in/bloc/sign_in_events.dart';
 import '../sign_in/sign_in_controller.dart';
 import '../sign_in/widgets/sign_in_widget.dart';
 import 'bloc/register_bloc.dart';
@@ -96,7 +97,8 @@ class _RegisterState extends State<Register> {
                         "Enter your details below and free to sign up"),
                   ),
                   buildLogInAdnRegButton("Sign Up", "login", () {
-                    Navigator.of(context).pushNamed("register");
+                    //Navigator.of(context).pushNamed("register");
+                    RegisterController(context: context).handleEmailRegister();
                   }),
                 ],
               ),
