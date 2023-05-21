@@ -1,3 +1,5 @@
+import 'package:course_app/pages/application/application_page.dart';
+import 'package:course_app/pages/application/bloc/app_blocs.dart';
 import 'package:course_app/pages/register/bloc/register_bloc.dart';
 import 'package:course_app/pages/register/register.dart';
 import 'package:course_app/pages/sign_in/bloc/sign_in_blocs.dart';
@@ -7,6 +9,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../global.dart';
 import '../../pages/welcome/welcome.dart';
 import 'names.dart';
 
@@ -32,9 +35,9 @@ class AppPages {
       ),
       PageEntity(
         route: AppRoutes.APPLICATION,
-        page: const Welcome(),
-        bloc: BlocProvider(create: (_) => WelcomeBloc()),
-      )
+        page: const ApplicationPage(),
+        bloc: BlocProvider(create: (_) => AppBlocs()),
+      ),
     ];
   }
 
@@ -52,13 +55,23 @@ class AppPages {
       //check if route is available
       var result = routes().where((element) => element.route == settings.name);
       if (result.isNotEmpty) {
-        print("valid route name ${settings.name}}");
+        bool deviceFirstOpen = Global.storageService.getDeviceFirstOpen();
+        if (result.first.route == AppRoutes.INITIAL && deviceFirstOpen) {
+          bool isLoggedin = Global.storageService.getIsLoggedIn();
+          if (isLoggedin) {
+            return MaterialPageRoute(
+                builder: (_) => const ApplicationPage(), settings: settings);
+          }
+          return MaterialPageRoute(
+              builder: (_) => const SignIn(), settings: settings);
+        }
         return MaterialPageRoute(
             builder: (_) => result.first.page, settings: settings);
       }
     }
     print("invalid route name ${settings.name}}");
-    return MaterialPageRoute(builder: (_) => SignIn(), settings: settings);
+    return MaterialPageRoute(
+        builder: (_) => const SignIn(), settings: settings);
   }
 }
 
