@@ -217,14 +217,12 @@ Widget _reusableText(String text,
     {Color color: AppColors.primaryText,
     int fontSize = 16,
     FontWeight fontWeight = FontWeight.bold}) {
-  return Container(
-    child: Text(
-      text,
-      style: TextStyle(
-        color: color,
-        fontWeight: fontWeight,
-        fontSize: fontSize.sp,
-      ),
+  return Text(
+    text,
+    style: TextStyle(
+      color: color,
+      fontWeight: fontWeight,
+      fontSize: fontSize.sp,
     ),
   );
 }
@@ -241,5 +239,45 @@ Widget _reusableMenuText(String menuText,
     padding: EdgeInsets.only(left: 15.w, right: 15.w, top: 5.h, bottom: 5.h),
     child: _reusableText(menuText,
         color: textColor, fontWeight: FontWeight.normal, fontSize: 12),
+  );
+}
+
+Widget courseGrid() {
+  return Container(
+    padding: EdgeInsets.all(12.w),
+    decoration: BoxDecoration(
+      borderRadius: BorderRadius.circular(15.w),
+      image: const DecorationImage(
+          fit: BoxFit.fill, image: AssetImage("assets/icons/Image(1).png")),
+    ),
+    child: Column(
+      mainAxisAlignment: MainAxisAlignment.end,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text("Best course for IT and Engineer",
+            maxLines: 1,
+            overflow: TextOverflow.fade,
+            textAlign: TextAlign.left,
+            softWrap: false,
+            style: TextStyle(
+              color: AppColors.primaryElementText,
+              fontWeight: FontWeight.bold,
+              fontSize: 11.sp,
+            )),
+        SizedBox(
+          height: 5.h,
+        ),
+        Text("Flutter best course",
+            maxLines: 1,
+            overflow: TextOverflow.fade,
+            textAlign: TextAlign.left,
+            softWrap: false,
+            style: TextStyle(
+              color: AppColors.primaryFourthElementText,
+              fontWeight: FontWeight.normal,
+              fontSize: 9.sp,
+            )),
+      ],
+    ),
   );
 }
