@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../common/values/colors.dart';
 
-AppBar buildAppBar() {
+AppBar buildAppBar(String type) {
   return AppBar(
     bottom: PreferredSize(
       preferredSize: const Size.fromHeight(1.0),
@@ -13,7 +13,7 @@ AppBar buildAppBar() {
       ),
     ),
     title: Text(
-      "Log In",
+      type,
       style: TextStyle(
         color: AppColors.primaryText,
         fontSize: 16.sp,
@@ -27,8 +27,8 @@ AppBar buildAppBar() {
 Widget buildThirdPartyLogin(BuildContext context) {
   return Center(
     child: Container(
-      margin: EdgeInsets.only(top: 40.h, bottom: 20.h),
-      padding: EdgeInsets.only(left: 25.w, right: 25.w),
+      margin: EdgeInsets.only(top: 30.h, bottom: 40.h),
+      padding: EdgeInsets.only(left: 50.w, right: 50.w),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
@@ -120,7 +120,7 @@ Widget buildTextField(String hintText, String textType, String iconName,
 Widget forgotPassword() {
   return Container(
     margin: EdgeInsets.only(left: 25.w),
-    width: 250.w,
+    width: 260.w,
     height: 44.h,
     child: GestureDetector(
       onTap: () {},
@@ -135,9 +135,10 @@ Widget forgotPassword() {
   );
 }
 
-Widget buildLogInAdnRegButton(String buttonName, String buttonType) {
+Widget buildLogInAdnRegButton(
+    String buttonName, String buttonType, void Function()? func) {
   return GestureDetector(
-    onTap: () {},
+    onTap: func,
     child: Container(
       width: 325.w,
       height: 50.h,
